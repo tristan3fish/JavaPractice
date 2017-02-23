@@ -9,12 +9,14 @@ public class Answer {
 	private int ans;
 	private boolean isCorrect;
 	private Question q;
+	private long hesitation_ms;
 	
-	public Answer(int ans, boolean isCorrect, Question q){
+	public Answer(int ans, Question q, long hesitation_ms){
 		this.dateTime = new Date();
 		this.ans = ans;
-		this.isCorrect = isCorrect;
+		this.isCorrect = q.isCorrect(ans);
 		this.q = q;
+		this.hesitation_ms = hesitation_ms;
 	}
 	
 	public int getAns() {
@@ -31,6 +33,14 @@ public class Answer {
 
 	public Date getDateTime() {
 		return dateTime;
+	}
+	
+	public long getHesitation_ms() {
+		return hesitation_ms;
+	}
+	
+	public double getHesitation_s() {
+		return (double) hesitation_ms / 1000d;
 	}
 	
 	@Override

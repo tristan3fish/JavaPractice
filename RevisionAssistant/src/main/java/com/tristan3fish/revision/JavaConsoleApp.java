@@ -2,8 +2,10 @@ package com.tristan3fish.revision;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 import com.tristan3fish.revision.repository.InMemoryWorkRepository;
-//import com.google.common.base.Stopwatch;
+import com.google.common.base.Stopwatch;
 
 public class JavaConsoleApp {
 
@@ -27,21 +29,17 @@ public class JavaConsoleApp {
 		while(!exit){
 			
 			Question q = wb.getNextQuestion();
+			
+			Answer a = null;
+			
 			q.print();
 			
-		      //Stopwatch timer = new Stopwatch().start();
-
-		      long total = 0;
-		      for (int i = 0; i < 10000000; i++) {
-		         total += i;
-		      }
-
-		      //timer.stop();
-		      //System.out.println(timer.getElapsedTime());
-			
-			//start timer
+		    Stopwatch timer = Stopwatch.createStarted();
 			char c = getCharInput();
-			//end timer
+			timer.stop();
+			long hesitation_ms = timer.elapsed(TimeUnit.MILLISECONDS);
+			
+			
 			switch (c) {
 				case 'q':
 					exit = true;
@@ -50,13 +48,16 @@ public class JavaConsoleApp {
 					//printDetailedResults();
 					break;
 				case 'a':
-					processAwnswer(0,q);
+					a = new Answer(0, q, hesitation_ms);
+					processAwnswer(a, q);
 					break;
 				case 's':
-					processAwnswer(1,q);
+					a = new Answer(1, q, hesitation_ms);
+					processAwnswer(a, q);
 					break;
 				case 'd':
-					processAwnswer(2,q);
+					a = new Answer(2, q, hesitation_ms);
+					processAwnswer(a, q);
 					break;
 				default:
 					break;
@@ -71,12 +72,11 @@ public class JavaConsoleApp {
 		System.out.println(wb.getSortedScores());
 	}
 
-	private void processAwnswer(int i, Question q){
-		boolean isCorrect = q.isCorrect(i);
-		Answer a = new Answer(i, isCorrect, q);
+	private void processAwnswer(Answer a, Question q){
+		
 		wb.submitWork(a, q);
 		
-		if(isCorrect){
+		if(a.isCorrect()){
 			System.out.println("Correct!");
 		} else {
 			System.out.println("Incorrect! Try this next time: " + q.getCorrectAnswer());

@@ -18,6 +18,7 @@ public class InMemoryWorkRepository implements WorkRepository {
 	@Override
 	public void saveAnswer(Answer a) {
 		//System.out.println("saving answer: " + a.hashCode());
+		System.out.println("hesitation: " + a.getHesitation_s());
 		answers.put((Integer)a.hashCode(), a);
 	}
 
