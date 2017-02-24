@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.repository.InMemoryWorkRepository;
 import com.google.common.base.Stopwatch;
 
@@ -20,7 +21,8 @@ public class JavaConsoleApp {
 	}
 	
 	public JavaConsoleApp(){
-		wb = new WorkBook(new InMemoryWorkRepository());
+		//wb = new WorkBook(new InMemoryWorkRepository());
+		wb = new WorkBook(new HibernateWorkRepository());
 	}
 	
 	private void startLoop() throws IOException {
@@ -88,7 +90,7 @@ public class JavaConsoleApp {
 		
 		char c = input.next().charAt(0);
 		//char c = (char) System.in.read();
-		input.close();
+		//input.close();
 		return c;
 	}
 

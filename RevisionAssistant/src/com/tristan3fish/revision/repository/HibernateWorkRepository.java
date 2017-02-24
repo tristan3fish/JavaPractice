@@ -1,7 +1,7 @@
 package com.tristan3fish.revision.repository;
 
 import java.util.List;
-
+import org.hibernate.Session;
 import com.tristan3fish.revision.Answer;
 import com.tristan3fish.revision.Question;
 
@@ -15,8 +15,15 @@ public class HibernateWorkRepository implements WorkRepository {
 
 	@Override
 	public void saveQuestion(Question q) {
-		// TODO Auto-generated method stub
-		
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        session.beginTransaction();
+ 
+        q.setQuestionId(q.hashCode());
+ 
+        session.save(q);
+        session.getTransaction().commit();
+        System.out.println("saved question :" + q.hashCode());
 	}
 
 	@Override

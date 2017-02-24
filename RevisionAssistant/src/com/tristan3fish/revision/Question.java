@@ -9,6 +9,7 @@ import java.util.StringJoiner;
 
 public class Question {
 
+    private int questionId;
 	private String question;
 	private String correctAnswer;
 	private ArrayList<String> posibleAnswers;
@@ -50,6 +51,14 @@ public class Question {
 		return correctAnswer;
 	}
 
+	public void setQuestion(String question){
+		this.question = question;
+	}
+	
+	public String getQuestion(){
+		return question;
+	}
+	
 	@Override
 	public int hashCode(){
 	    return Objects.hash(question, correctAnswer, posibleAnswers);
@@ -59,5 +68,13 @@ public class Question {
 	public boolean equals(Object o)
 	{
 	    return hashCode() == o.hashCode();
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 }
