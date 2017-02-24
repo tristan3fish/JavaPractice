@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
+//import java.awt.Rectangle;
 
 
 @SuppressWarnings("serial")
@@ -14,7 +14,7 @@ public class GravityApplet extends Applet implements Runnable {
 	private int height;
 	private int width;
 	private boolean _isRunning;
-	private Rectangle boundary;
+	//private Rectangle boundary;
 	private Image offscreenImage;
 	private Graphics offscr;
 
@@ -25,7 +25,7 @@ public class GravityApplet extends Applet implements Runnable {
 		setSize(d);
 		width = getSize().width;
 		height = getSize().height;
-		boundary = new Rectangle(width, height);
+		//boundary = new Rectangle(width, height);
 		
 
 		

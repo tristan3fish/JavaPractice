@@ -88,6 +88,7 @@ public class JavaConsoleApp {
 		
 		char c = input.next().charAt(0);
 		//char c = (char) System.in.read();
+		input.close();
 		return c;
 	}
 

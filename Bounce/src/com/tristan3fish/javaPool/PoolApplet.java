@@ -76,7 +76,7 @@ public class PoolApplet extends Applet implements Runnable{
 
 				//System.out.println("["+i+","+j+"]:"+t);
 				if(t<2){
-					int k = 1;
+					//int k = 1;
 				}
 				if(t <0 & t>-1){
 					balls.get(i).moveToTime(t);
