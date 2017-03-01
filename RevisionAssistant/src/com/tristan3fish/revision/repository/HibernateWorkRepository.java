@@ -1,29 +1,30 @@
 package com.tristan3fish.revision.repository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import com.tristan3fish.revision.Answer;
 import com.tristan3fish.revision.Question;
 
 public class HibernateWorkRepository implements WorkRepository {
 
+	private SessionFactory sf;
+	
+	public HibernateWorkRepository() {
+		sf = HibernateUtil.getSessionFactory();
+	}
+	
 	@Override
 	public void saveAnswer(Answer a) {
-		// TODO Auto-generated method stub
-		
+        saveEntity(a);
 	}
 
 	@Override
 	public void saveQuestion(Question q) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        
-        session.beginTransaction();
- 
-        q.setQuestionId(q.hashCode());
- 
-        session.save(q);
-        session.getTransaction().commit();
-        System.out.println("saved question :" + q.hashCode());
+        saveEntity(q);
 	}
 
 	@Override
@@ -47,11 +48,15 @@ public class HibernateWorkRepository implements WorkRepository {
 		return null;
 	}
 
-	@Override
-	public void saveScore(Answer a, Question q) {
-		// TODO Auto-generated method stub
-		
-	}
+	//@Override
+	//public void saveScore(Answer a, Question q) {
+	//	int incrementer = a.isCorrect() ? 1 : -1;
+		//if(score.containsKey(q)){
+		//	score.put(q, score.get(q) + incrementer);
+		//} else {
+		//	score.put(q, incrementer);
+		//}
+	//}
 
 	@Override
 	public Question getWorstQuestion() {
@@ -60,8 +65,16 @@ public class HibernateWorkRepository implements WorkRepository {
 	}
 
 	@Override
-	public List<Integer> getSortedScores() {
-		// TODO Auto-generated method stub
+	public int[] getSortedScores() {
+
+		
 		return null;
+	}
+	
+	private <T> void saveEntity(T entity) {
+		Session session = sf.openSession();
+        session.beginTransaction();
+        session.save(entity);
+        session.getTransaction().commit();
 	}
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="com.tristan3fish.revision.Answer" table="Answer">
+      <id name="AnswerId" type="int" column="AnswerId">
+         <generator class="assigned"/>
+      </id>
+      <property name="answer" column="Answer" type="int"/>
+   </class>
+</hibernate-mapping>

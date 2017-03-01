@@ -11,6 +11,7 @@ import com.google.common.base.Stopwatch;
 public class JavaConsoleApp {
 
 	private WorkBook wb;
+	private QuestionPrinter qp;
 	
 	public static void main(String[] args) {
 		try {
@@ -23,18 +24,19 @@ public class JavaConsoleApp {
 	public JavaConsoleApp(){
 		//wb = new WorkBook(new InMemoryWorkRepository());
 		wb = new WorkBook(new HibernateWorkRepository());
+		
+		qp = new QuestionPrinter();
 	}
 	
 	private void startLoop() throws IOException {
 		boolean exit = false;
 		
 		while(!exit){
-			
 			Question q = wb.getNextQuestion();
 			
 			Answer a = null;
 			
-			q.print();
+			qp.print(q);
 			
 		    Stopwatch timer = Stopwatch.createStarted();
 			char c = getCharInput();

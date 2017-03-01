@@ -6,29 +6,37 @@ import java.util.Objects;
 public class Answer {
 	
 	private Date dateTime;
-	private int ans;
+	private int answer;
 	private boolean isCorrect;
-	private Question q;
+	private Question question;
 	private long hesitation_ms;
+	private int answerId;
+	
+	public Answer(){}
 	
 	public Answer(int ans, Question q, long hesitation_ms){
 		this.dateTime = new Date();
-		this.ans = ans;
+		this.answer = ans;
 		this.isCorrect = q.isCorrect(ans);
-		this.q = q;
+		this.question = q;
 		this.hesitation_ms = hesitation_ms;
+		this.setAnswerId(this.hashCode());
+	}
+
+	public void setAnswer(int answer) {
+		this.answer = answer;
 	}
 	
-	public int getAns() {
-		return ans;
+	public int getAnswer() {
+		return answer;
 	}
 	
 	public boolean isCorrect() {
 		return isCorrect;
 	}
 	
-	public Question getQ() {
-		return q;
+	public Question getQuestion() {
+		return question;
 	}
 
 	public Date getDateTime() {
@@ -45,6 +53,14 @@ public class Answer {
 	
 	@Override
 	public int hashCode(){
-	    return Objects.hash(dateTime, ans, isCorrect, q.hashCode());
+	    return Objects.hash(dateTime, answer, isCorrect, question.hashCode());
+	}
+	
+	public int getAnswerId() {
+		return answerId;
+	}
+
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
 	}
 }

@@ -14,5 +14,7 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update </property>
         <mapping resource="question.hbm.xml" />
+        <!--  -->
+        <mapping resource="answer.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

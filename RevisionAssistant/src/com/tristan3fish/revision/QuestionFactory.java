@@ -64,7 +64,7 @@ public class QuestionFactory {
 	private void buildDictionaries() {
 
 		try {
-			BufferedReader fileReader = new BufferedReader(new FileReader(fileSamples.get("DrivingTheorySamples")));
+			BufferedReader fileReader = new BufferedReader(new FileReader(fileSamples.get("CommandSamples")));
 			
 			String line;
 			try {

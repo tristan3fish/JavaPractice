@@ -22,7 +22,9 @@ public class WorkBook {
 			workRepository.saveQuestion(q);
 		}
 		
-		workRepository.saveScore(a, q);
+		q.addAttempt(a);
+		
+		//workRepository.saveScore(a, q);
 	}
 	
 	private int ctr = 0;
