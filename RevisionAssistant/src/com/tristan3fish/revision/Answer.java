@@ -5,55 +5,22 @@ import java.util.Objects;
 
 public class Answer {
 	
-	private Date dateTime;
+	private int answerId;	
+	private Date timeCreated;
 	private int answer;
-	private boolean isCorrect;
-	private Question question;
+	private boolean correct;
 	private long hesitation_ms;
-	private int answerId;
-	
+	//private Question question;
+
 	public Answer(){}
 	
-	public Answer(int ans, Question q, long hesitation_ms){
-		this.dateTime = new Date();
-		this.answer = ans;
-		this.isCorrect = q.isCorrect(ans);
-		this.question = q;
+	public Answer(Date timeCreated, int answer, boolean correct, long hesitation_ms){ //Question question, 
+		this.timeCreated = timeCreated;
+		this.answer = answer;
+		this.correct = correct;
+		//this.question = question;
 		this.hesitation_ms = hesitation_ms;
 		this.setAnswerId(this.hashCode());
-	}
-
-	public void setAnswer(int answer) {
-		this.answer = answer;
-	}
-	
-	public int getAnswer() {
-		return answer;
-	}
-	
-	public boolean isCorrect() {
-		return isCorrect;
-	}
-	
-	public Question getQuestion() {
-		return question;
-	}
-
-	public Date getDateTime() {
-		return dateTime;
-	}
-	
-	public long getHesitation_ms() {
-		return hesitation_ms;
-	}
-	
-	public double getHesitation_s() {
-		return (double) hesitation_ms / 1000d;
-	}
-	
-	@Override
-	public int hashCode(){
-	    return Objects.hash(dateTime, answer, isCorrect, question.hashCode());
 	}
 	
 	public int getAnswerId() {
@@ -62,5 +29,54 @@ public class Answer {
 
 	public void setAnswerId(int answerId) {
 		this.answerId = answerId;
+	}
+	
+	public Date getTimeCreated() {
+		return timeCreated;
+	}
+	
+	public void setTimeCreated(Date timeCreated) {
+		this.timeCreated = timeCreated;
+	}
+	
+	public int getAnswer() {
+		return answer;
+	}
+	
+	public void setAnswer(int answer) {
+		this.answer = answer;
+	}
+
+	public boolean isCorrect() {
+		return correct;
+	}
+	
+	public void setCorrect(boolean isCorrect) {
+		this.correct = isCorrect;
+	}
+
+	public long getHesitation_ms() {
+		return hesitation_ms;
+	}
+
+	public void setHesitation_ms(long hesitation_ms) {
+		this.hesitation_ms = hesitation_ms;
+	}
+	
+//	public Question getQuestion() {
+//		return question;
+//	}
+//	
+//	public void setQuestion(Question question) {
+//		this.question = question ;
+//	}
+	
+	public double getHesitation_s() {
+		return (double) hesitation_ms / 1000d;
+	}
+	
+	@Override
+	public int hashCode(){
+	    return Objects.hash(timeCreated, answer, correct);//, question.hashCode());
 	}
 }

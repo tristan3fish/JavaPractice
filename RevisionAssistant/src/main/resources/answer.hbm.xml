@@ -5,9 +5,17 @@
 
 <hibernate-mapping>
    <class name="com.tristan3fish.revision.Answer" table="Answer">
-      <id name="AnswerId" type="int" column="AnswerId">
-         <generator class="assigned"/>
-      </id>
-      <property name="answer" column="Answer" type="int"/>
+	<id name="AnswerId" type="int" column="AnswerId">
+		<generator class="assigned"/>
+	</id>
+	<timestamp name="timeCreated" column="TimeCreated" />
+	<property name="answer" column="Answer" type="int"/>
+	<property name="correct" column="Correct" type="boolean"/>
+	<property name="hesitation_ms" column="Hesitation_ms" type="long"/>
+    
+<!-- 	<many-to-one name="question" class="com.tristan3fish.revision.Question" fetch="select">
+		<column name="QuestionId" not-null="true" />
+	</many-to-one> -->
+        
    </class>
 </hibernate-mapping>

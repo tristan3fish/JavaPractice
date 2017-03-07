@@ -1,6 +1,7 @@
 package com.tristan3fish.revision;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -52,16 +53,16 @@ public class JavaConsoleApp {
 					//printDetailedResults();
 					break;
 				case 'a':
-					a = new Answer(0, q, hesitation_ms);
-					processAwnswer(a, q);
+					a = new Answer(new Date(), 0, q.isCorrect(0), hesitation_ms);
+					processAnswer(a, q);
 					break;
 				case 's':
-					a = new Answer(1, q, hesitation_ms);
-					processAwnswer(a, q);
+					a = new Answer(new Date(), 1, q.isCorrect(1), hesitation_ms);
+					processAnswer(a, q);
 					break;
 				case 'd':
-					a = new Answer(2, q, hesitation_ms);
-					processAwnswer(a, q);
+					a = new Answer(new Date(), 2, q.isCorrect(2), hesitation_ms);
+					processAnswer(a, q);
 					break;
 				default:
 					break;
@@ -76,7 +77,7 @@ public class JavaConsoleApp {
 		System.out.println(wb.getSortedScores());
 	}
 
-	private void processAwnswer(Answer a, Question q){
+	private void processAnswer(Answer a, Question q){
 		
 		wb.submitWork(a, q);
 		

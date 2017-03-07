@@ -15,16 +15,15 @@ public class WorkBook {
 	}
 	
 	public void submitWork(Answer a, Question q){
-		if(!workRepository.containsAnswer(a)){
-			workRepository.saveAnswer(a);
-		}
-		if(!workRepository.containsQuestion(q)){
-			workRepository.saveQuestion(q);
-		}
 		
 		q.addAttempt(a);
 		
-		//workRepository.saveScore(a, q);
+		if(!workRepository.containsQuestion(q)){
+			workRepository.saveQuestion(q);
+		}
+//		if(!workRepository.containsAnswer(a)){
+//			workRepository.saveAnswer(a);
+//		}
 	}
 	
 	private int ctr = 0;

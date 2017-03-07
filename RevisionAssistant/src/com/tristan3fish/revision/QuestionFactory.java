@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 public class QuestionFactory {
@@ -58,7 +60,10 @@ public class QuestionFactory {
 			}
 		}
 		
-		return new Question(question, answer, wrongAnswers);
+		List<String> posibleAnswers = new ArrayList<String>(wrongAnswers);
+		Collections.shuffle(posibleAnswers, new Random(System.currentTimeMillis()));
+		
+		return new Question(question, answer, posibleAnswers);
 	}
 	
 	private void buildDictionaries() {
@@ -82,5 +87,4 @@ public class QuestionFactory {
 			e.printStackTrace();
 		}
 	}
-	
 }

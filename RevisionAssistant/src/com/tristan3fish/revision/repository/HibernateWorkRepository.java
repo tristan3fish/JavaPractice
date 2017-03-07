@@ -3,15 +3,23 @@ package com.tristan3fish.revision.repository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.tristan3fish.revision.Answer;
 import com.tristan3fish.revision.Question;
+import com.tristan3fish.revision.ScoreCalculator;
 
 public class HibernateWorkRepository implements WorkRepository {
 
 	private SessionFactory sf;
+	
+	//would like to move this out as the repository 
+	//should not need to know about this class
+	private ScoreCalculator sc = new ScoreCalculator();
 	
 	public HibernateWorkRepository() {
 		sf = HibernateUtil.getSessionFactory();
@@ -60,15 +68,25 @@ public class HibernateWorkRepository implements WorkRepository {
 
 	@Override
 	public Question getWorstQuestion() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sf.openSession();
+		Query query = session.createQuery("from Question");
+		List<Question> questions = query.list();
+		
+		
+		int minScore = questions.stream().mapToInt(q -> sc.calculateScore(q)).min().orElse(0);
+		
+		return questions.stream().filter(q -> Objects.equals(sc.calculateScore(q), minScore)).findFirst().orElse(null);
+
 	}
 
 	@Override
 	public int[] getSortedScores() {
-
+		Session session = sf.openSession();
+		Query query = session.createQuery("from Question");
+		List<Question> questions = query.list();
 		
-		return null;
+		//return null;
+		return questions.stream().mapToInt(q -> sc.calculateScore(q)).sorted().toArray();
 	}
 	
 	private <T> void saveEntity(T entity) {

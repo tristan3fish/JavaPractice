@@ -3,9 +3,11 @@ package com.tristan3fish.revision;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Set;
 
 public class Question {
 
@@ -13,38 +15,57 @@ public class Question {
 	private String question;
 	private String correctAnswer;
 	private List<String> posibleAnswers;
-	private List<Answer> attemptedAnswers;
+	private Set<Answer> attemptedAnswers;
 	
 	public Question(){}
 	
-	public Question(String qkey, String aValue, Collection<String> wrongAnswers, long seed) {
-		question = qkey;
-		correctAnswer = aValue;
-		this.posibleAnswers = new ArrayList<String>(wrongAnswers);
-		this.attemptedAnswers = new ArrayList<>();
+	public Question(String question, String correctAnswer, List<String> posibleAnswers) {//, long seed
+		this.question = question;
+		this.correctAnswer = correctAnswer;
+		this.posibleAnswers = posibleAnswers;
 		this.posibleAnswers.add(correctAnswer);
-		Collections.shuffle(this.posibleAnswers, new Random(seed));
+		this.attemptedAnswers = new HashSet<>();
 		this.setQuestionId(this.hashCode());
 	}
 	
-	public Question(String qkey, String aValue, Collection<String> wrongAnswers){
-		this(qkey, aValue, wrongAnswers, System.currentTimeMillis());
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 	
-	public boolean isCorrect(int userResponce) {
-		return posibleAnswers.get(userResponce).equals(correctAnswer);
+	public String getQuestion(){
+		return question;
+	}
+	
+	public void setQuestion(String question){
+		this.question = question;
 	}
 	
 	public String getCorrectAnswer(){
 		return correctAnswer;
 	}
+	
+	public void setCorrectAnswer(String correctAnswer){
+		this.correctAnswer = correctAnswer;
+	}
 
-	public void setQuestion(String question){
-		this.question = question;
+	public List<String> getPosibleAnswers() {
+		return posibleAnswers;
 	}
 	
-	public String getQuestion(){
-		return question;
+	public void setPosibleAnswers(List<String> posibleAnswers) {
+		this.posibleAnswers = posibleAnswers;
+	}
+	
+	public Set<Answer> getAttemptedAnswers() {
+		return attemptedAnswers;
+	}
+	
+	public void setAttemptedAnswers(Set<Answer> attemptedAnswers) {
+		this.attemptedAnswers = attemptedAnswers;
 	}
 	
 	@Override
@@ -57,24 +78,12 @@ public class Question {
 	{
 	    return hashCode() == o.hashCode();
 	}
-
-	public int getQuestionId() {
-		return questionId;
+	
+	public boolean isCorrect(int userResponce) {
+		return posibleAnswers.get(userResponce).equals(correctAnswer);
 	}
-
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
-
-	public List<Answer> getAttemptedAnswers() {
-		return attemptedAnswers;
-	}
-
+	
 	public void addAttempt(Answer a) {
 		attemptedAnswers.add(a);
-	}
-
-	public List<String> getPosibleAnswers() {
-		return posibleAnswers;
 	}
 }
