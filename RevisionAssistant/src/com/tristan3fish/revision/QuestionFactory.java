@@ -61,7 +61,8 @@ public class QuestionFactory {
 		}
 		
 		List<String> posibleAnswers = new ArrayList<String>(wrongAnswers);
-		Collections.shuffle(posibleAnswers, new Random(System.currentTimeMillis()));
+		posibleAnswers.add(answer);
+		Collections.shuffle(posibleAnswers);//, new Random(System.currentTimeMillis())
 		
 		return new Question(question, answer, posibleAnswers);
 	}

@@ -10,7 +10,7 @@ public class Answer {
 	private int answer;
 	private boolean correct;
 	private long hesitation_ms;
-	//private Question question;
+	private Question question;
 
 	public Answer(){}
 	
@@ -63,13 +63,13 @@ public class Answer {
 		this.hesitation_ms = hesitation_ms;
 	}
 	
-//	public Question getQuestion() {
-//		return question;
-//	}
-//	
-//	public void setQuestion(Question question) {
-//		this.question = question ;
-//	}
+	public Question getQuestion() {
+		return question;
+	}
+	
+	public void setQuestion(Question question) {
+		this.question = question ;
+	}
 	
 	public double getHesitation_s() {
 		return (double) hesitation_ms / 1000d;
@@ -79,4 +79,5 @@ public class Answer {
 	public int hashCode(){
 	    return Objects.hash(timeCreated, answer, correct);//, question.hashCode());
 	}
+
 }

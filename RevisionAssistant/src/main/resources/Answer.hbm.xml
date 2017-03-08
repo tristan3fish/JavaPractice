@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping>
+    <class name="com.tristan3fish.revision.Answer" table="ANSWER">
+        <id name="answerId" type="int">
+            <column name="ANSWERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="timeCreated" type="java.util.Date">
+            <column name="TIMECREATED" />
+        </property>
+        <property name="answer" type="int">
+            <column name="ANSWER" />
+        </property>
+        <property name="correct" type="boolean">
+            <column name="CORRECT" />
+        </property>
+        <property name="hesitation_ms" type="long">
+            <column name="HESITATION_MS" />
+        </property>
+        <many-to-one name="question" class="com.tristan3fish.revision.Question" fetch="join">
+            <column name="QUESTION" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

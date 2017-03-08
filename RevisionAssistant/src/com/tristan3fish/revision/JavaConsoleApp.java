@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import com.google.common.base.Stopwatch;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.repository.InMemoryWorkRepository;
-import com.google.common.base.Stopwatch;
 
 public class JavaConsoleApp {
 
@@ -23,8 +23,8 @@ public class JavaConsoleApp {
 	}
 	
 	public JavaConsoleApp(){
-		//wb = new WorkBook(new InMemoryWorkRepository());
-		wb = new WorkBook(new HibernateWorkRepository());
+		wb = new WorkBook(new InMemoryWorkRepository());
+		//wb = new WorkBook(new HibernateWorkRepository());
 		
 		qp = new QuestionPrinter();
 	}

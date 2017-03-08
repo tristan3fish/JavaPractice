@@ -1,13 +1,8 @@
 package com.tristan3fish.revision;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
 
 public class Question {
 
@@ -15,7 +10,7 @@ public class Question {
 	private String question;
 	private String correctAnswer;
 	private List<String> posibleAnswers;
-	private Set<Answer> attemptedAnswers;
+	private List<Answer> attemptedAnswers;
 	
 	public Question(){}
 	
@@ -23,8 +18,7 @@ public class Question {
 		this.question = question;
 		this.correctAnswer = correctAnswer;
 		this.posibleAnswers = posibleAnswers;
-		this.posibleAnswers.add(correctAnswer);
-		this.attemptedAnswers = new HashSet<>();
+		this.attemptedAnswers = new ArrayList<>();
 		this.setQuestionId(this.hashCode());
 	}
 	
@@ -60,11 +54,11 @@ public class Question {
 		this.posibleAnswers = posibleAnswers;
 	}
 	
-	public Set<Answer> getAttemptedAnswers() {
+	public List<Answer> getAttemptedAnswers() {
 		return attemptedAnswers;
 	}
 	
-	public void setAttemptedAnswers(Set<Answer> attemptedAnswers) {
+	public void setAttemptedAnswers(List<Answer> attemptedAnswers) {
 		this.attemptedAnswers = attemptedAnswers;
 	}
 	
@@ -84,6 +78,7 @@ public class Question {
 	}
 	
 	public void addAttempt(Answer a) {
+		a.setQuestion(this);
 		attemptedAnswers.add(a);
 	}
 }

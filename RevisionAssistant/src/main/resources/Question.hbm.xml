@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+ 
+<hibernate-mapping>
+    <class name="com.tristan3fish.revision.Question" table="QUESTION">
+        <id name="questionId" type="int">
+            <column name="QUESTIONID" />
+            <generator class="assigned" />
+        </id>
+        <property name="question" type="java.lang.String">
+            <column name="QUESTION" />
+        </property>
+        <property name="correctAnswer" type="java.lang.String">
+            <column name="CORRECTANSWER" />
+        </property>
+<!--         <list name="posibleAnswers" inverse="false" table="QUESTION" lazy="true">
+            <key>
+                <column name="QUESTIONID" />
+            </key>
+            <list-index></list-index>
+            <element type="java.lang.String">
+                <column name="POSIBLEANSWERS" />
+            </element>
+        </list> -->
+        <list name="posibleAnswers" table="PosibleAnswer" >
+			<key column="QUESTIONID"></key>
+			<index column="PosibleAnswerId"></index>
+			<element column="PosibleAnswer" type="string"></element>
+		</list>
+        
+        <list name="attemptedAnswers" inverse="true" cascade="save-update" table="ANSWER" lazy="true">
+            <key>
+                <column name="QUESTIONID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.tristan3fish.revision.Answer" />
+        </list>
+    </class>
+</hibernate-mapping>
