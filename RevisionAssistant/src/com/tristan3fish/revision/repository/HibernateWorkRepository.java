@@ -50,26 +50,12 @@ public class HibernateWorkRepository implements WorkRepository {
 
 	@Override
 	public List<Answer> getAnswers() {
-		// TODO Auto-generated method stub
-		return null;
+		return getEntityList("Answer");
 	}
-
-	//@Override
-	//public void saveScore(Answer a, Question q) {
-	//	int incrementer = a.isCorrect() ? 1 : -1;
-		//if(score.containsKey(q)){
-		//	score.put(q, score.get(q) + incrementer);
-		//} else {
-		//	score.put(q, incrementer);
-		//}
-	//}
 
 	@Override
 	public Question getWorstQuestion() {
-		Session session = sf.openSession();
-		Query query = session.createQuery("from Question");
-		List<Question> questions = query.list();
-		
+		List<Question> questions = getEntityList("Question");
 		
 		int minScore = questions.stream().mapToInt(q -> sc.calculateScore(q)).min().orElse(0);
 		
@@ -79,11 +65,8 @@ public class HibernateWorkRepository implements WorkRepository {
 
 	@Override
 	public int[] getSortedScores() {
-		Session session = sf.openSession();
-		Query query = session.createQuery("from Question");
-		List<Question> questions = query.list();
-		
-		//return null;
+		List<Question> questions = getEntityList("Question");
+
 		return questions.stream().mapToInt(q -> sc.calculateScore(q)).sorted().toArray();
 	}
 	
@@ -91,6 +74,15 @@ public class HibernateWorkRepository implements WorkRepository {
 		Session session = sf.openSession();
         session.beginTransaction();
         session.save(entity);
+        //session.close();
         session.getTransaction().commit();
+	}
+	
+	private <T> List<T> getEntityList(String tableName) {
+		Session session = sf.openSession();
+		Query query = session.createQuery("from " + tableName);
+		List<T> result = query.list();
+		//session.close();
+		return result;
 	}
 }
