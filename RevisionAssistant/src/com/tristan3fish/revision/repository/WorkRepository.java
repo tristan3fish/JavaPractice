@@ -6,8 +6,8 @@ import com.tristan3fish.revision.Answer;
 import com.tristan3fish.revision.Question;
 
 public interface WorkRepository {
-	public void saveAnswer(Answer a);
-	public void saveQuestion(Question q);
+	public void saveOrUpdateAnswer(Answer a);
+	public void saveOrUpdateQuestion(Question q);
 	public boolean containsAnswer(Answer a);
 	public boolean containsQuestion(Question q);
 	public List<Question> getQuestions();

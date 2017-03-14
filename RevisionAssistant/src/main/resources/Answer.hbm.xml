@@ -15,14 +15,14 @@
         <property name="answer" type="int">
             <column name="ANSWER" />
         </property>
-        <property name="correct" type="boolean">
+        <property name="correct" type="numeric_boolean">
             <column name="CORRECT" />
         </property>
         <property name="hesitation_ms" type="long">
             <column name="HESITATION_MS" />
         </property>
         <many-to-one name="question" class="com.tristan3fish.revision.Question" fetch="join">
-            <column name="QUESTION" />
+            <column name="QUESTIONID" />
         </many-to-one>
     </class>
 </hibernate-mapping>

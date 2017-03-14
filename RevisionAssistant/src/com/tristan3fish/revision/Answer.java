@@ -51,8 +51,8 @@ public class Answer {
 		return correct;
 	}
 	
-	public void setCorrect(boolean isCorrect) {
-		this.correct = isCorrect;
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
 	}
 
 	public long getHesitation_ms() {

@@ -18,9 +18,9 @@ public class WorkBook {
 		
 		q.addAttempt(a);
 		
-		if(!workRepository.containsQuestion(q)){
-			workRepository.saveQuestion(q);
-		}
+		//if(!workRepository.containsQuestion(q)){
+		workRepository.saveOrUpdateQuestion(q);
+		//}
 //		if(!workRepository.containsAnswer(a)){
 //			workRepository.saveAnswer(a);
 //		}

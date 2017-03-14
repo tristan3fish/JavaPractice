@@ -19,13 +19,13 @@ public class InMemoryWorkRepository implements WorkRepository {
 	private ScoreCalculator sc = new ScoreCalculator();
 	
 	@Override
-	public void saveAnswer(Answer a) {
+	public void saveOrUpdateAnswer(Answer a) {
 		System.out.println("hesitation: " + a.getHesitation_s());
 		answers.put((Integer)a.hashCode(), a);
 	}
 
 	@Override
-	public void saveQuestion(Question q) {
+	public void saveOrUpdateQuestion(Question q) {
 		questions.put((Integer)q.hashCode(), q);
 	}
 
