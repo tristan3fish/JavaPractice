@@ -15,4 +15,5 @@ public interface WorkRepository {
 	//public void saveScore(Answer a, Question q);
 	public Question getWorstQuestion();
 	public int[] getSortedScores();
+	public void purge();
 }

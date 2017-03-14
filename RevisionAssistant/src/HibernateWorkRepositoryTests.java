@@ -14,7 +14,7 @@ import com.tristan3fish.revision.QuestionFactory;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 
-public class HibernateWorkRepositoryTest {
+public class HibernateWorkRepositoryTests {
 	
 	private static HibernateWorkRepository hwr = new HibernateWorkRepository(HibernateUtil.getSessionFactory());
 	private Random rand;
@@ -85,5 +85,33 @@ public class HibernateWorkRepositoryTest {
 		q.addAttempt(a);
 		
 		hwr.saveOrUpdateQuestion(q);
+	}
+	
+	@Test
+	public void canPurgeAllData() {
+		Question q = new QuestionFactory().buildQuestion(false);
+		Answer a = new Answer(new Date(), 0, false, rand.nextInt());
+		q.addAttempt(a);
+		hwr.saveOrUpdateQuestion(q);
+		
+		hwr.purge();
+		
+		List<Question> questions = hwr.getQuestions();
+		assertTrue(questions.isEmpty());
+		List<Answer> answers = hwr.getAnswers();
+		assertTrue(answers.isEmpty());
+	}
+	
+	@Test
+	public void canGetSortedScores() {
+		hwr.purge();
+		
+		Question q = new QuestionFactory().buildQuestion(false);
+		Answer a = new Answer(new Date(), 0, false, rand.nextInt());
+		q.addAttempt(a);
+		hwr.saveOrUpdateQuestion(q);
+		
+		int[] scores = hwr.getSortedScores();
+		int i=0;
 	}
 }

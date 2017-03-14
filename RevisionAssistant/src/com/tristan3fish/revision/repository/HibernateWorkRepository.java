@@ -1,5 +1,6 @@
 package com.tristan3fish.revision.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,22 +33,6 @@ public class HibernateWorkRepository implements WorkRepository {
 	public void saveOrUpdateQuestion(Question q) {
 		saveOrUpdateEntity(q);
 	}
-
-	@Override
-	public boolean containsAnswer(Answer a) {
-		Session session = sf.openSession();
-	    Query query = session.createQuery("select 1 from Answer a where a.answerId = :ANSWERID");
-	    query.setInteger("ANSWERID", a.getAnswerId() );
-	    return (query.uniqueResult() != null);
-	}
-
-	@Override
-	public boolean containsQuestion(Question q) {
-		Session session = sf.openSession();
-	    Query query = session.createQuery("select 1 from Question q where q.questionId = :QUESTIONID");
-	    query.setInteger("QUESTIONID", q.getQuestionId() );
-	    return (query.uniqueResult() != null);
-	}
 	
 	@Override
 	public List<Question> getQuestions() {
@@ -72,18 +57,68 @@ public class HibernateWorkRepository implements WorkRepository {
 		return questions.stream().mapToInt(q -> sc.calculateScore(q)).sorted().toArray();
 	}
 	
+	@Override
+	public boolean containsAnswer(Answer a) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		
+	    Query query = session.createQuery("select 1 from Answer a where a.answerId = :ANSWERID");
+	    query.setInteger("ANSWERID", a.getAnswerId() );
+	    boolean result = query.uniqueResult() != null;
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    return result;
+	}
+
+	@Override
+	public boolean containsQuestion(Question q) {
+		Session session = sf.openSession();
+		session.beginTransaction();
+		
+	    Query query = session.createQuery("select 1 from Question q where q.questionId = :QUESTIONID");
+	    query.setInteger("QUESTIONID", q.getQuestionId() );
+	    boolean result = query.uniqueResult() != null;
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    return result;
+	}
+	
+	@Override
+	public void purge() {
+		Session session = sf.openSession();
+        session.beginTransaction();
+        
+        session.createSQLQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
+        session.createSQLQuery("TRUNCATE TABLE Question").executeUpdate();
+        session.createSQLQuery("TRUNCATE TABLE Answer").executeUpdate();
+        session.createSQLQuery("TRUNCATE TABLE PosibleAnswer").executeUpdate();
+        session.createSQLQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
+
+        session.getTransaction().commit();
+        session.close();
+	}
+	
 	private <T> void saveOrUpdateEntity(T entity) {
 		Session session = sf.openSession();
         session.beginTransaction();
+        
         session.saveOrUpdate(entity);
+        
         session.getTransaction().commit();
         session.close();
 	}
 	
 	private <T> List<T> getEntityList(String tableName) {
 		Session session = sf.openSession();
+		session.beginTransaction();
+		
 		Query query = session.createQuery("from " + tableName);
 		List<T> result = query.list();
+
+        session.getTransaction().commit();
+        session.close();
 		return result;
 	}
 }

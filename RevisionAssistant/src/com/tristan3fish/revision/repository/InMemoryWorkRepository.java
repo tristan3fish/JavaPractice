@@ -60,4 +60,10 @@ public class InMemoryWorkRepository implements WorkRepository {
 	public int[] getSortedScores() {
 		return questions.values().stream().mapToInt(q -> sc.calculateScore(q)).sorted().toArray();
 	}
+
+	@Override
+	public void purge() {
+		answers = new HashMap<>();
+		questions = new HashMap<>();
+	}
 }

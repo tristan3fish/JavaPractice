@@ -7,11 +7,11 @@ import com.tristan3fish.revision.repository.WorkRepository;
 public class WorkBook {
 
 	private WorkRepository workRepository;
-	private QuestionFactory qf;
+	private QuestionSelectionStrategy questionSelectionStrategy;
 	
-	public WorkBook(WorkRepository wr){
-		qf = new QuestionFactory();
-		workRepository = wr;
+	public WorkBook(WorkRepository workRepository, QuestionSelectionStrategy questionSelectionStrategy){
+		this.workRepository = workRepository;
+		this.setQuestionSelectionStrategy(questionSelectionStrategy);
 	}
 	
 	public void submitWork(Answer a, Question q){
@@ -26,20 +26,12 @@ public class WorkBook {
 //		}
 	}
 	
-	private int ctr = 0;
+	public void reset(){
+		workRepository.purge();
+	}
 	
 	public Question getNextQuestion() {
-		ctr++;
-		ctr%=8;
-		Question result = null;
-		if(ctr == 1 || ctr == 3){
-			result = qf.buildQuestion(false);
-		}else if(ctr == 2 || ctr == 4){
-			result = qf.buildQuestion(true);
-		}else{
-			result = workRepository.getWorstQuestion();
-		}
-		return result;
+		return getQuestionSelectionStrategy().getNextQuestion();
 	}
 
 	public String getSortedScores() {
@@ -48,5 +40,13 @@ public class WorkBook {
 			sj.add(scores.toString());
 		}
 		return sj.toString();
+	}
+
+	public QuestionSelectionStrategy getQuestionSelectionStrategy() {
+		return questionSelectionStrategy;
+	}
+
+	public void setQuestionSelectionStrategy(QuestionSelectionStrategy questionSelectionStrategy) {
+		this.questionSelectionStrategy = questionSelectionStrategy;
 	}
 }

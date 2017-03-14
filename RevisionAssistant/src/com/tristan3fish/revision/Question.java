@@ -77,6 +77,10 @@ public class Question {
 		return posibleAnswers.get(userResponce).equals(correctAnswer);
 	}
 	
+	public int getIndexOfCorrectAnswer(){
+		return posibleAnswers.indexOf(correctAnswer);
+	}
+	
 	public void addAttempt(Answer a) {
 		a.setQuestion(this);
 		attemptedAnswers.add(a);

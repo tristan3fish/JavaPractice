@@ -9,6 +9,7 @@ import com.google.common.base.Stopwatch;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.repository.InMemoryWorkRepository;
+import com.tristan3fish.revision.repository.WorkRepository;
 
 public class JavaConsoleApp {
 
@@ -24,8 +25,11 @@ public class JavaConsoleApp {
 	}
 	
 	public JavaConsoleApp(){
-		//wb = new WorkBook(new InMemoryWorkRepository());
-		wb = new WorkBook(new HibernateWorkRepository(HibernateUtil.getSessionFactory()));
+		
+		WorkRepository workRepository = new HibernateWorkRepository(HibernateUtil.getSessionFactory());
+		//WorkRepository workRepository = new InMemoryWorkRepository()
+		wb = new WorkBook(workRepository, new DefaultQuestionSelectionStrategy(workRepository));
+		//wb = new WorkBook(workRepository);
 		
 		qp = new QuestionPrinter();
 	}
