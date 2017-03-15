@@ -111,7 +111,9 @@ public class HibernateWorkRepositoryTests {
 		q.addAttempt(a);
 		hwr.saveOrUpdateQuestion(q);
 		
-		int[] scores = hwr.getSortedScores();
-		int i=0;
+		List<Integer> scores = hwr.getSortedScores();
+		assertTrue(scores.size() == 1);
+		assertTrue(scores.get(0) == -1);
+		
 	}
 }

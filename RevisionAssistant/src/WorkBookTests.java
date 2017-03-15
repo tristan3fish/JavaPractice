@@ -3,6 +3,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
+import org.hibernate.Hibernate;
 import org.junit.Test;
 
 import com.tristan3fish.revision.Answer;
@@ -103,28 +104,21 @@ public class WorkBookTests {
 		assertTrue(wb.getSortedScores().equals("[2]"));
 		
 		//get the previous question and incorrectly answer it
-		Answer a3 = new Answer(new Date(), (idx-1)%3, q.isCorrect((idx-1)%3), 100);
+		Answer a3 = new Answer(new Date(), (idx+1)%3, q.isCorrect((idx+1)%3), 100);
 		wb.submitWork(a3, q);
 		assertTrue(wb.getSortedScores().equals("[1]"));		
 		
 		//new question incorrect answer
 		Question q2 = qf.buildQuestion(true);
 		int idx2 = q2.getIndexOfCorrectAnswer();
-		Answer a4 = new Answer(new Date(), (idx2-1)%3, q2.isCorrect((idx2-1)%3), 100);
+		Answer a4 = new Answer(new Date(), (idx2+1)%3, q2.isCorrect((idx2+1)%3), 100);
 		wb.submitWork(a4, q2);
 		assertTrue(wb.getSortedScores().equals("[-1, 1]"));
 		
 		//previous question incorrect answer
-		Answer a5 = new Answer(new Date(), (idx2-1)%3, q2.isCorrect((idx2-1)%3), 100);
+		Answer a5 = new Answer(new Date(), (idx2+1)%3, q2.isCorrect((idx2+1)%3), 100);
 		wb.submitWork(a5, q2);
 		assertTrue(wb.getSortedScores().equals("[-2, 1]"));
-		
-//		//next i will be taking q2 from the workbook who uses the repo. will correctly anser twice
-//		Question q3 = wb.getNextQuestion();
-//		int idx3 = q3.getIndexOfCorrectAnswer();
-//		Answer a6 = new Answer(new Date(), idx3, q3.isCorrect(idx3), 100);
-//		wb.submitWork(a6, q3);
-//		assertTrue(wb.getSortedScores().equals("[-1, 1]"));
 		
 	}
 	
@@ -141,7 +135,7 @@ public class WorkBookTests {
 		//new question incorrect answer
 		Question q2 = qf.buildQuestion(true);
 		int idx2 = q2.getIndexOfCorrectAnswer();
-		Answer a4 = new Answer(new Date(), (idx2-1)%3, q2.isCorrect((idx2-1)%3), 100);
+		Answer a4 = new Answer(new Date(), (idx2+1)%3, q2.isCorrect((idx2+1)%3), 100);
 		wb.submitWork(a4, q2);
 		assertTrue(wb.getSortedScores().equals("[-1]"));
 		
@@ -150,7 +144,20 @@ public class WorkBookTests {
 		int idx3 = q3.getIndexOfCorrectAnswer();
 		Answer a6 = new Answer(new Date(), idx3, q3.isCorrect(idx3), 100);
 		wb.submitWork(a6, q3);
-		assertTrue(wb.getSortedScores().equals("[-1, 1]"));
+		assertTrue(wb.getSortedScores().equals("[0]"));
 		
+		//question from workbook
+		Question q4 = wb.getNextQuestion();
+		int idx4 = q4.getIndexOfCorrectAnswer();
+		Answer a7 = new Answer(new Date(), idx4, q4.isCorrect(idx4), 100);
+		wb.submitWork(a7, q4);
+		assertTrue(wb.getSortedScores().equals("[1]"));
+		
+		//new question incorrect answer
+		Question q5 = qf.buildQuestion(false);
+		int idx5 = q5.getIndexOfCorrectAnswer();
+		Answer a8 = new Answer(new Date(), (idx5+1)%3, q5.isCorrect((idx5+1)%3), 100);
+		wb.submitWork(a8, q5);
+		assertTrue(wb.getSortedScores().equals("[-1, 1]"));
 	}
 }

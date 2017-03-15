@@ -14,6 +14,6 @@ public interface WorkRepository {
 	public List<Answer> getAnswers();
 	//public void saveScore(Answer a, Question q);
 	public Question getWorstQuestion();
-	public int[] getSortedScores();
+	public List<Integer> getSortedScores();
 	public void purge();
 }

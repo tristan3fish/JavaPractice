@@ -1,9 +1,14 @@
 package com.tristan3fish.revision.repository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import org.hibernate.FetchMode;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,14 +52,61 @@ public class HibernateWorkRepository implements WorkRepository {
 	@Override
 	public Question getWorstQuestion() {
 		List<Question> questions = getEntityList("Question");
-		int minScore = questions.stream().mapToInt(q -> sc.calculateScore(q)).min().orElse(0);
-		return questions.stream().filter(q -> Objects.equals(sc.calculateScore(q), minScore)).findFirst().orElse(null);
+		Session session = sf.openSession();
+		session.beginTransaction();
+		
+		Question result = null;
+		int minScore = Integer.MAX_VALUE;
+		for(Question q : questions){
+			Iterator<Answer> itr = session
+				.createQuery("select a from Answer a where a.question = :Question")
+				.setEntity("Question", q)
+	            .list()
+	            .iterator();
+			
+			int score = 0;
+			while ( itr.hasNext() ) {
+				Answer a = itr.next();
+				score += a.isCorrect()? 1:-1;
+			}
+			if(score < minScore){
+				minScore = score;
+				result = q;
+			}
+		}
+		
+	    session.getTransaction().commit();
+	    session.close();
+	    
+	    return result;
 	}
 
 	@Override
-	public int[] getSortedScores() {
+	public List<Integer> getSortedScores() {	
 		List<Question> questions = getEntityList("Question");
-		return questions.stream().mapToInt(q -> sc.calculateScore(q)).sorted().toArray();
+		Session session = sf.openSession();
+		session.beginTransaction();
+		List<Integer> scores = new ArrayList<Integer>();
+		for(Question q : questions){
+			Iterator<Answer> itr = session
+				.createQuery("select a from Answer a where a.question = :Question")
+				.setEntity("Question", q)
+	            .list()
+	            .iterator();
+			
+			int score = 0;
+			while ( itr.hasNext() ) {
+				Answer a = itr.next();
+				score += a.isCorrect()? 1:-1;
+			}
+			
+			scores.add(score);
+		}
+	    session.getTransaction().commit();
+	    session.close();
+	    
+	    Collections.sort(scores);
+	    return scores;
 	}
 	
 	@Override

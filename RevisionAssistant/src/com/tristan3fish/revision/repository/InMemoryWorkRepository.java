@@ -57,8 +57,8 @@ public class InMemoryWorkRepository implements WorkRepository {
 	}
 
 	@Override
-	public int[] getSortedScores() {
-		return questions.values().stream().mapToInt(q -> sc.calculateScore(q)).sorted().toArray();
+	public List<Integer> getSortedScores() {
+		return (List<Integer>) questions.values().stream().mapToInt(q -> sc.calculateScore(q)).sorted();
 	}
 
 	@Override

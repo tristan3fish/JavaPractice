@@ -24,13 +24,13 @@
                 <column name="POSIBLEANSWERS" />
             </element>
         </list> -->
-        <list name="posibleAnswers" table="PosibleAnswer" >
+        <list name="posibleAnswers" table="PosibleAnswer" lazy="false">
 			<key column="QUESTIONID"></key>
 			<index column="PosibleAnswerId"></index>
 			<element column="PosibleAnswer" type="string"></element>
 		</list>
         
-        <list name="attemptedAnswers" inverse="true" cascade="save-update" table="ANSWER" lazy="true">
+        <list name="attemptedAnswers" inverse="true" cascade="save-update" table="ANSWER" lazy="false">
             <key>
                 <column name="QUESTIONID" />
             </key>
