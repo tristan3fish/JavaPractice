@@ -26,8 +26,8 @@ public class QuestionFactory {
 		itemsToLearnInverted = new HashMap<String, String>();
 		
 		fileSamples = new HashMap<String, String>();
-		fileSamples.put("CommandSamples", "/Users/tristan/Documents/workspace/RevisionAssistant/src/CommandSamples");
-		fileSamples.put("DrivingTheorySamples", "/Users/tristan/Documents/workspace/RevisionAssistant/src/DrivingTheorySamples");
+		fileSamples.put("CommandSamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/CommandSamples");							   
+		fileSamples.put("DrivingTheorySamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/DrivingTheorySamples");
 		
 		buildDictionaries();
 		keys = new ArrayList<>(itemsToLearn.keySet());
@@ -62,7 +62,7 @@ public class QuestionFactory {
 		
 		List<String> posibleAnswers = new ArrayList<String>(wrongAnswers);
 		posibleAnswers.add(answer);
-		Collections.shuffle(posibleAnswers);//, new Random(System.currentTimeMillis())
+		Collections.shuffle(posibleAnswers);
 		
 		return new Question(question, answer, posibleAnswers);
 	}
