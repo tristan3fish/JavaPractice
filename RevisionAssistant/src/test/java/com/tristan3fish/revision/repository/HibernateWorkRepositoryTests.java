@@ -1,3 +1,5 @@
+package com.tristan3fish.revision.repository;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -15,7 +17,7 @@ import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 
 public class HibernateWorkRepositoryTests {
-	
+
 	private static HibernateWorkRepository hwr = new HibernateWorkRepository(HibernateUtil.getSessionFactory());
 	private Random rand;
 	

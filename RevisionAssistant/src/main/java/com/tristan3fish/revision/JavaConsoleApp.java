@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.base.Stopwatch;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
-import com.tristan3fish.revision.repository.InMemoryWorkRepository;
 import com.tristan3fish.revision.repository.WorkRepository;
 
 public class JavaConsoleApp {

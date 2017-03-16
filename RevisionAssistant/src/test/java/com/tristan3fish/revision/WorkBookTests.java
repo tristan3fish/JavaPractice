@@ -1,17 +1,12 @@
+package com.tristan3fish.revision;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
-import org.hibernate.Hibernate;
 import org.junit.Test;
 
-import com.tristan3fish.revision.Answer;
-import com.tristan3fish.revision.DefaultQuestionSelectionStrategy;
-import com.tristan3fish.revision.Question;
-import com.tristan3fish.revision.QuestionFactory;
-import com.tristan3fish.revision.RepoOnlyQuestionSelectionStrategy;
-import com.tristan3fish.revision.WorkBook;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.repository.WorkRepository;
@@ -25,6 +20,7 @@ public class WorkBookTests {
 		
 		//WorkRepository workRepository = new InMemoryWorkRepository()
 		//WorkBook wb = new WorkBook(workRepository);
+		assertNotNull(wb);
 	}
 	
 	@Test
