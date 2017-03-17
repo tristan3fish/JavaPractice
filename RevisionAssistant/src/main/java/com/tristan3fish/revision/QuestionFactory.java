@@ -26,9 +26,17 @@ public class QuestionFactory {
 		itemsToLearnInverted = new HashMap<String, String>();
 		
 		fileSamples = new HashMap<String, String>();
-		fileSamples.put("CommandSamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/CommandSamples");							   
-		fileSamples.put("DrivingTheorySamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/DrivingTheorySamples");
 		
+		if(System.getProperty("os.name").toLowerCase().contains("windows")) {
+			//win
+			fileSamples.put("CommandSamples", "F:\\GitHubWorkspace\\JavaPractice\\RevisionAssistant\\src\\main\\resources\\CommandSamples");							   
+			fileSamples.put("DrivingTheorySamples", "F:\\GitHubWorkspace\\JavaPractice\\RevisionAssistant\\src\\main\\resources\\DrivingTheorySamples");
+		} else {
+			//mac
+			fileSamples.put("CommandSamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/CommandSamples");							   
+			fileSamples.put("DrivingTheorySamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/DrivingTheorySamples");
+		}
+
 		buildDictionaries();
 		keys = new ArrayList<>(itemsToLearn.keySet());
 		values = new ArrayList<>(itemsToLearnInverted.keySet());

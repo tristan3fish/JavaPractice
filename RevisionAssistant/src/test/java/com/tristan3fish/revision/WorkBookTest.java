@@ -81,7 +81,7 @@ public class WorkBookTest {
 	public void canCorrectlyCalculateScores() {
 		WorkRepository workRepository = new HibernateWorkRepository(HibernateUtil.getSessionFactory());
 		WorkBook wb = new WorkBook(workRepository, new RepoOnlyQuestionSelectionStrategy(workRepository));
-		QuestionFactory qf = new QuestionFactory();
+		QuestionFactory qf = new QuestionFactory(1000); //we put a seed in for the random that wont change each time we run the test. 
 		
 		//reset the workbook
 		wb.reset();
