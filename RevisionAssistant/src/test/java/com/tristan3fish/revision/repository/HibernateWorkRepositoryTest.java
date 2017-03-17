@@ -16,7 +16,7 @@ import com.tristan3fish.revision.QuestionFactory;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 
-public class HibernateWorkRepositoryTests {
+public class HibernateWorkRepositoryTest {
 
 	private static HibernateWorkRepository hwr = new HibernateWorkRepository(HibernateUtil.getSessionFactory());
 	private Random rand;

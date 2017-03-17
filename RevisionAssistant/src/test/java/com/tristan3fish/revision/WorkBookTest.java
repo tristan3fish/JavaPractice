@@ -11,7 +11,7 @@ import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.repository.WorkRepository;
 
-public class WorkBookTests {
+public class WorkBookTest {
 	
 	@Test
 	public void canInitialise() {
