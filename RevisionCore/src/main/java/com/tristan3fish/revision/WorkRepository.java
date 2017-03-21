@@ -1,4 +1,4 @@
-package com.tristan3fish.revision.repository;
+package com.tristan3fish.revision;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ public interface WorkRepository {
 	public boolean containsQuestion(Question q);
 	public List<Question> getQuestions();
 	public List<Answer> getAnswers();
-	//public void saveScore(Answer a, Question q);
 	public Question getWorstQuestion();
 	public List<Integer> getSortedScores();
 	public void purge();

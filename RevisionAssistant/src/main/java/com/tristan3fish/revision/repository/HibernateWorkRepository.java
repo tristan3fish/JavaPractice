@@ -12,14 +12,11 @@ import org.hibernate.SessionFactory;
 import com.tristan3fish.revision.Answer;
 import com.tristan3fish.revision.Question;
 import com.tristan3fish.revision.ScoreCalculator;
+import com.tristan3fish.revision.WorkRepository;
 
 public class HibernateWorkRepository implements WorkRepository {
 
 	private SessionFactory sf;
-	
-	//would like to move this out as the repository 
-	//should not need to know about this class
-	private ScoreCalculator sc = new ScoreCalculator();
 	
 	public HibernateWorkRepository(SessionFactory sf) {
 		this.sf = sf;

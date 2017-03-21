@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.base.Stopwatch;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
-import com.tristan3fish.revision.repository.WorkRepository;
+import com.tristan3fish.revision.WorkRepository;
 
 public class JavaConsoleApp {
 
@@ -34,6 +34,7 @@ public class JavaConsoleApp {
 	}
 	
 	private void startLoop() throws IOException {
+		
 		boolean exit = false;
 		
 		while(!exit){

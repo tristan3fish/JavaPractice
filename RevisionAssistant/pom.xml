@@ -24,13 +24,7 @@
   
   
   <dependencies>
-		
-<!--     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency> -->
+  
     <dependency>
 	    <groupId>junit</groupId>
 	    <artifactId>junit</artifactId>
@@ -44,7 +38,6 @@
 	    <version>4.3.5.Final</version>
 	</dependency>
 	
-
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
@@ -56,6 +49,13 @@
 	    <artifactId>guava</artifactId>
 	    <version>19.0</version>
 	</dependency>
+	
+	<dependency>
+	  <groupId>com.tristan3fish.revision</groupId>
+	  <artifactId>RevisionCore</artifactId>
+	  <version>1.0-SNAPSHOT</version>
+	</dependency>
+	
   </dependencies>
-    
+
 </project>

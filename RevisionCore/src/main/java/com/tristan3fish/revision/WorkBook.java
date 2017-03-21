@@ -2,7 +2,7 @@ package com.tristan3fish.revision;
 
 import java.util.StringJoiner;
 
-import com.tristan3fish.revision.repository.WorkRepository;
+import com.tristan3fish.revision.WorkRepository;
 
 public class WorkBook {
 

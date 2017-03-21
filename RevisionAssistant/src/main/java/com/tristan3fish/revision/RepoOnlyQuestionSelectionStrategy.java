@@ -1,6 +1,6 @@
 package com.tristan3fish.revision;
 
-import com.tristan3fish.revision.repository.WorkRepository;
+import com.tristan3fish.revision.WorkRepository;
 
 public class RepoOnlyQuestionSelectionStrategy implements QuestionSelectionStrategy {
 	
