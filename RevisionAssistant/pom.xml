@@ -51,11 +51,17 @@
 	</dependency>
 	
 	<dependency>
-	  <groupId>com.tristan3fish.revision</groupId>
-	  <artifactId>RevisionCore</artifactId>
-	  <version>1.0-SNAPSHOT</version>
+		<groupId>com.tristan3fish.revision</groupId>
+		<artifactId>RevisionCore</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</dependency>
 	
+	<dependency>
+	    <groupId>com.google.protobuf</groupId>
+	    <artifactId>protobuf-java</artifactId>
+	    <version>3.2.0</version>
+	</dependency>
+
   </dependencies>
 
 </project>

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package revision;
+
+option java_package = "com.tristan3fish.revision.protobuf";
+option java_outer_classname = "AnswerProtos";
+
+message AnswerProto {
+
+	int32 answerId = 1;
+	string timeCreated = 2;
+	int32 answerNumeric = 3;
+	bool correct = 4;
+	int64 hesitation_ms = 5;
+	int32 questionId = 6;
+
+}

@@ -11,7 +11,6 @@ import org.hibernate.SessionFactory;
 
 import com.tristan3fish.revision.Answer;
 import com.tristan3fish.revision.Question;
-import com.tristan3fish.revision.ScoreCalculator;
 import com.tristan3fish.revision.WorkRepository;
 
 public class HibernateWorkRepository implements WorkRepository {

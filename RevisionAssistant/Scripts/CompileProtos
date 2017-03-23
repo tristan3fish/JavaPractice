@@ -1,0 +1,2 @@
+protoc -I=/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/ --java_out=/Users/tristan/JavaPractice/RevisionAssistant/src/main/java/ /Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/Answer.proto
+protoc -I=/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/ --java_out=/Users/tristan/JavaPractice/RevisionAssistant/src/main/java/ /Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/Question.proto

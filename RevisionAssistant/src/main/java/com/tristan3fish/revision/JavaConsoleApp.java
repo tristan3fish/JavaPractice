@@ -9,6 +9,7 @@ import com.google.common.base.Stopwatch;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.WorkRepository;
+import com.tristan3fish.revision.protobuf.ProtoService;
 
 public class JavaConsoleApp {
 
@@ -83,6 +84,8 @@ public class JavaConsoleApp {
 	}
 
 	private void processAnswer(Answer a, Question q){
+		
+		new ProtoService().sendAnswer(a);
 		
 		wb.submitWork(a, q);
 		

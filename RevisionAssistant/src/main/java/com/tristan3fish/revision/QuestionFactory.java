@@ -29,12 +29,14 @@ public class QuestionFactory {
 		
 		if(System.getProperty("os.name").toLowerCase().contains("windows")) {
 			//win
-			fileSamples.put("CommandSamples", "F:\\GitHubWorkspace\\JavaPractice\\RevisionAssistant\\src\\main\\resources\\CommandSamples");							   
+			fileSamples.put("CommandSamples", "F:\\GitHubWorkspace\\JavaPractice\\RevisionAssistant\\src\\main\\resources\\CommandSamples");
 			fileSamples.put("DrivingTheorySamples", "F:\\GitHubWorkspace\\JavaPractice\\RevisionAssistant\\src\\main\\resources\\DrivingTheorySamples");
+			fileSamples.put("TopSpanish2000", "F:\\GitHubWorkspace\\JavaPractice\\RevisionAssistant\\src\\main\\resources\\TopSpanish2000");
 		} else {
 			//mac
-			fileSamples.put("CommandSamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/CommandSamples");							   
+			fileSamples.put("CommandSamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/CommandSamples");
 			fileSamples.put("DrivingTheorySamples", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/DrivingTheorySamples");
+			fileSamples.put("TopSpanish2000", "/Users/tristan/JavaPractice/RevisionAssistant/src/main/resources/TopSpanish2000");
 		}
 
 		buildDictionaries();
@@ -78,7 +80,7 @@ public class QuestionFactory {
 	private void buildDictionaries() {
 
 		try {
-			BufferedReader fileReader = new BufferedReader(new FileReader(fileSamples.get("CommandSamples")));
+			BufferedReader fileReader = new BufferedReader(new FileReader(fileSamples.get("TopSpanish2000")));
 			
 			String line;
 			try {
