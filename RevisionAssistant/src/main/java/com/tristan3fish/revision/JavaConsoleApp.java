@@ -9,6 +9,8 @@ import com.google.common.base.Stopwatch;
 import com.tristan3fish.revision.repository.HibernateUtil;
 import com.tristan3fish.revision.repository.HibernateWorkRepository;
 import com.tristan3fish.revision.WorkRepository;
+import com.tristan3fish.revision.protobuf.FileProtoSender;
+import com.tristan3fish.revision.protobuf.PollingFileProtoReceiver;
 import com.tristan3fish.revision.protobuf.ProtoService;
 
 public class JavaConsoleApp {
@@ -84,8 +86,9 @@ public class JavaConsoleApp {
 	}
 
 	private void processAnswer(Answer a, Question q){
-		
-		new ProtoService().sendAnswer(a);
+		String fileName = System.getProperty("user.home") + "/answerProto";
+		ProtoService ps = new ProtoService(new FileProtoSender(fileName), new PollingFileProtoReceiver(fileName));
+		ps.sendAnswer(a);
 		
 		wb.submitWork(a, q);
 		
