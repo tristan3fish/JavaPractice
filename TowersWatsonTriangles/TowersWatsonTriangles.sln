@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowersWatsonTriangles", "TowersWatsonTrianglesConsole\TowersWatsonTriangles.csproj", "{806B5A63-9424-4E26-9ED1-87DD27A8C159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvSourceAndDestination", "CsvSourceAndDestination\CsvSourceAndDestination.csproj", "{627EEA9F-84D7-401B-8636-92D7ED0407D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedInterfacesAndClasses", "SharedInterfacesAndClasses\SharedInterfacesAndClasses.csproj", "{A9938DFE-7BEF-4974-B394-C4FA9EC33C68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{806B5A63-9424-4E26-9ED1-87DD27A8C159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806B5A63-9424-4E26-9ED1-87DD27A8C159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806B5A63-9424-4E26-9ED1-87DD27A8C159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806B5A63-9424-4E26-9ED1-87DD27A8C159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{627EEA9F-84D7-401B-8636-92D7ED0407D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627EEA9F-84D7-401B-8636-92D7ED0407D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627EEA9F-84D7-401B-8636-92D7ED0407D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627EEA9F-84D7-401B-8636-92D7ED0407D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9938DFE-7BEF-4974-B394-C4FA9EC33C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9938DFE-7BEF-4974-B394-C4FA9EC33C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9938DFE-7BEF-4974-B394-C4FA9EC33C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9938DFE-7BEF-4974-B394-C4FA9EC33C68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
