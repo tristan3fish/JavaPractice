@@ -1,3 +1,5 @@
-FROM ubuntu:15.04
+FROM tomcat:8.0
 MAINTAINER tristan3fish@hotmail.com
-RUN apt-get update
+
+#copy over war file
+COPY ./target/*.war ${CATALINA_HOME}/webapps/t3fservlets.war
