@@ -23,4 +23,10 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!--map icon file requests to the default servlet-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.ico</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -3,50 +3,26 @@
 <html>
 <head>
     <title>CogniPorter</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="metro-bootstrap-master/css/metro-bootstrap.css" rel="stylesheet" type="text/css"/>
-
 </head>
-
-
-
-
-
 <body>
-
 <%@include file="_header.jsp"%>
+<% User user = (User)request.getAttribute("user");
+    if(user == null){
+        user = new User();
+    }
+%>
+<center><h1>Hello <%=user.getName()%>!</h1></center>
 
+<p>
+Welcome to the CogniPorter homepage. This site is under development.
+</p>
 
-<section class="main container-fluid">
-    <div class="container">
+<p>
+<form action="hello" method="post">
+    Please send us your name: <input type="text" name="name"/>
+    <input type="submit" value="submit"/>
+</form>
+</p>
 
-        <% User user = (User)request.getAttribute("user");
-            if(user == null){
-                user = new User();
-            }
-        %>
-
-        <h1>Hey <%= user.getName() %> Welcome to the CogniPorter homepage!</h1>
-
-        <div class="row-fluid">
-            <div class="col-md-3">Sidebar</div>
-            <div class="col-md-9">
-                <tabset>
-                    <tab heading="Search">
-                        <div>
-                            <form action="hello" method="post">
-                                Name: <input type="text" name="name"/> <input type="submit" value="submit">
-                            </form>
-                        </div>
-                    </tab>
-                </tabset>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
 </body>
 </html>

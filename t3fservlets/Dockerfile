@@ -1,5 +1,8 @@
 FROM tomcat:8.0
 MAINTAINER tristan3fish@hotmail.com
 
-#copy over war file
-COPY ./target/*.war ${CATALINA_HOME}/webapps/t3fservlets.war
+#Remove other unused webapps
+RUN rm -rf ${CATALINA_HOME}/webapps/*
+
+#copy over war file calling it ROOT so it is the main app
+COPY ./target/*.war ${CATALINA_HOME}/webapps/ROOT.war

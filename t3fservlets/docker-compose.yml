@@ -3,4 +3,6 @@ version: '2'
 services:
   man:
     build: .
-    image: t3fservlets:v0
+    ports:
+      - "8888:8080"
+    image: tristan3fish/t3fservlets:latest

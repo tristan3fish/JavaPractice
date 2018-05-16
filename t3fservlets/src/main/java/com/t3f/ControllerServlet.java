@@ -14,13 +14,19 @@ public class ControllerServlet extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-	    User user = new User("Fred", "fred@fred.com");
+       // String path = req.getRequestURI().substring(req.getContextPath().length());
+//        if (path.startsWith("/resources")) {
+//            getServletContext().f(req, resp); // Goes to default servlet.
+//        } else {
 
-        RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
+            User user = new User("World", "world@everywhere.com");
 
-        req.setAttribute("user", user);
-        dispatcher.forward(req, resp);
+            RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
 
+            req.setAttribute("user", user);
+            dispatcher.forward(req, resp);
+
+        //}
 
     }
 
