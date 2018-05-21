@@ -6,12 +6,12 @@
 
 
     <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>com.t3f.HelloServlet</servlet-class>
+        <servlet-name>AnswerServlet</servlet-name>
+        <servlet-class>com.t3f.AnswerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <servlet-name>AnswerServlet</servlet-name>
+        <url-pattern>/answer</url-pattern>
     </servlet-mapping>
 
     <servlet>

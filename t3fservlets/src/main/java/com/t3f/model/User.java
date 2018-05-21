@@ -1,4 +1,4 @@
-package com.t3f;
+package com.t3f.model;
 
 public class User {
 

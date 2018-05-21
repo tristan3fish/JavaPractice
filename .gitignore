@@ -3,3 +3,7 @@
 .recommenders/
 .idea/
 */target/*
+*/bin/*
+*/.project
+*/.classpath
+*/.settings
