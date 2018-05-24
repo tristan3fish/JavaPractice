@@ -1,7 +1,7 @@
 package com.t3f;
 
-import com.t3f.model.MultiChoiceQuestion;
-import com.t3f.model.User;
+import com.t3f.repository.TranslationRepository;
+import com.t3f.service.QuestionService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,13 +15,13 @@ public class ControllerServlet extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        MultiChoiceQuestion question = new MultiChoiceQuestion("1+1","2",new String[]{"5","35"});
-        req.getSession().setAttribute("question", question);
+        QuestionService questionService = new QuestionService(new TranslationRepository());
 
-        
+        req.getSession().setAttribute("question", questionService.generateRandomQuestion());
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
 
         dispatcher.forward(req, resp);
-
     }
+
 }

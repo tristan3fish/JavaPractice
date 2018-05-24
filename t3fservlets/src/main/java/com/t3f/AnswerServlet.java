@@ -19,10 +19,16 @@ public class AnswerServlet extends HttpServlet {
         MultiChoiceQuestion question = (MultiChoiceQuestion) req.getSession().getAttribute("question");
 
         if(StringUtils.isNotEmpty(proposedAnswer)){
+            resp.setContentType("text/html");
             PrintWriter writer = resp.getWriter();
             
             String result = "Your proposed answer of " + proposedAnswer + " is " + question.isCorrectAnswer(proposedAnswer);
-            
+
+            result +=   "<form action=\"home\">" +
+                        "<input type=\"submit\" value=\"Go Back\">" +
+                        "</form>";
+
+
             writer.print(result);
         }
     }
