@@ -1,4 +1,4 @@
-FROM tomcat:8.0
+FROM tomcat:8.5-jre9
 MAINTAINER tristan3fish@hotmail.com
 
 #Remove other unused webapps
